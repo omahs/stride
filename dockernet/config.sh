@@ -16,10 +16,11 @@ TX_LOGS=$SCRIPT_DIR/logs/tx.log
 KEYS_LOGS=$SCRIPT_DIR/logs/keys.log
 
 # List of hosts enabled 
-#  `start-docker` defaults to just GAIA if HOST_CHAINS is empty
-# `start-docker-all` always runs all hosts
-HOST_CHAINS=(GAIA JUNO) 
+HOST_CHAINS=() 
 
+# If no host zones are specified above:
+#  `start-docker` defaults to just GAIA if HOST_CHAINS is empty
+#  `start-docker-all` always runs all hosts
 if [[ "${ALL_HOST_CHAINS:-false}" == "true" ]]; then 
   HOST_CHAINS=(GAIA JUNO OSMO STARS)
 elif [[ "${#HOST_CHAINS[@]}" == "0" ]]; then 
@@ -117,7 +118,7 @@ STRIDE_MAIN_CMD="$STRIDE_CMD --home $SCRIPT_DIR/state/${STRIDE_NODE_PREFIX}1"
 # GAIA 
 GAIA_CHAIN_ID=GAIA
 GAIA_NODE_PREFIX=gaia
-GAIA_NUM_NODES=4
+GAIA_NUM_NODES=1
 GAIA_CMD="$SCRIPT_DIR/../build/gaiad"
 GAIA_VAL_PREFIX=gval
 GAIA_REV_ACCT=grev1
