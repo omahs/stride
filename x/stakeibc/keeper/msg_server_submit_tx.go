@@ -15,8 +15,9 @@ import (
 	"github.com/Stride-Labs/stride/v4/x/stakeibc/types"
 
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
-	distributiontypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 	stakingTypes "github.com/cosmos/cosmos-sdk/x/staking/types"
+
+	distributiontypes "github.com/Stride-Labs/stride/v4/x/distribution/types"
 
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
