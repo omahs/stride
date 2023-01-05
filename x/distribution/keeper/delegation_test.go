@@ -3,18 +3,19 @@ package keeper_test
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-
 	"github.com/cosmos/cosmos-sdk/simapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/x/staking"
 	"github.com/cosmos/cosmos-sdk/x/staking/teststaking"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
+	"github.com/stretchr/testify/require"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
+
+	strideapp "github.com/Stride-Labs/stride/v4/app"
 )
 
 func TestCalculateRewardsBasic(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 	tstaking := teststaking.NewHelper(t, ctx, app.StakingKeeper)
 
@@ -68,7 +69,7 @@ func TestCalculateRewardsBasic(t *testing.T) {
 }
 
 func TestCalculateRewardsAfterSlash(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	addr := simapp.AddTestAddrs(app, ctx, 2, sdk.NewInt(100000000))
@@ -131,7 +132,7 @@ func TestCalculateRewardsAfterSlash(t *testing.T) {
 }
 
 func TestCalculateRewardsAfterManySlashes(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	tstaking := teststaking.NewHelper(t, ctx, app.StakingKeeper)
@@ -206,7 +207,7 @@ func TestCalculateRewardsAfterManySlashes(t *testing.T) {
 }
 
 func TestCalculateRewardsMultiDelegator(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	tstaking := teststaking.NewHelper(t, ctx, app.StakingKeeper)
@@ -269,7 +270,7 @@ func TestCalculateRewardsMultiDelegator(t *testing.T) {
 }
 
 func TestWithdrawDelegationRewardsBasic(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	balancePower := int64(1000)
@@ -333,7 +334,7 @@ func TestWithdrawDelegationRewardsBasic(t *testing.T) {
 }
 
 func TestWithdrawDelegationZeroRewards(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	balancePower := int64(1000)
@@ -360,7 +361,7 @@ func TestWithdrawDelegationZeroRewards(t *testing.T) {
 }
 
 func TestCalculateRewardsAfterManySlashesInSameBlock(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	addr := simapp.AddTestAddrs(app, ctx, 1, sdk.NewInt(1000000000))
@@ -428,7 +429,7 @@ func TestCalculateRewardsAfterManySlashesInSameBlock(t *testing.T) {
 }
 
 func TestCalculateRewardsMultiDelegatorMultiSlash(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	tstaking := teststaking.NewHelper(t, ctx, app.StakingKeeper)
@@ -502,7 +503,7 @@ func TestCalculateRewardsMultiDelegatorMultiSlash(t *testing.T) {
 }
 
 func TestCalculateRewardsMultiDelegatorMultWithdraw(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	tstaking := teststaking.NewHelper(t, ctx, app.StakingKeeper)

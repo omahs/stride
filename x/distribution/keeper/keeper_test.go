@@ -3,18 +3,18 @@ package keeper_test
 import (
 	"testing"
 
+	"github.com/cosmos/cosmos-sdk/simapp"
+	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
-	"github.com/cosmos/cosmos-sdk/simapp"
-	sdk "github.com/cosmos/cosmos-sdk/types"
-
+	strideapp "github.com/Stride-Labs/stride/v4/app"
 	"github.com/Stride-Labs/stride/v4/x/distribution/types"
 )
 
 func TestSetWithdrawAddr(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	addr := simapp.AddTestAddrs(app, ctx, 2, sdk.NewInt(1000000000))
@@ -36,7 +36,7 @@ func TestSetWithdrawAddr(t *testing.T) {
 }
 
 func TestWithdrawValidatorCommission(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	valCommission := sdk.DecCoins{
@@ -88,7 +88,7 @@ func TestWithdrawValidatorCommission(t *testing.T) {
 }
 
 func TestGetTotalRewards(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	valCommission := sdk.DecCoins{
@@ -109,7 +109,7 @@ func TestGetTotalRewards(t *testing.T) {
 }
 
 func TestFundCommunityPool(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	addr := simapp.AddTestAddrs(app, ctx, 2, sdk.ZeroInt())

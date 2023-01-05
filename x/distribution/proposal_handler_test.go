@@ -3,13 +3,13 @@ package distribution_test
 import (
 	"testing"
 
-	"github.com/stretchr/testify/require"
-	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
-
 	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
 	"github.com/cosmos/cosmos-sdk/simapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	"github.com/stretchr/testify/require"
+	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 
+	strideapp "github.com/Stride-Labs/stride/v4/app"
 	"github.com/Stride-Labs/stride/v4/x/distribution"
 	"github.com/Stride-Labs/stride/v4/x/distribution/types"
 )
@@ -26,7 +26,7 @@ func testProposal(recipient sdk.AccAddress, amount sdk.Coins) *types.CommunityPo
 }
 
 func TestProposalHandlerPassed(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	recipient := delAddr1
@@ -55,7 +55,7 @@ func TestProposalHandlerPassed(t *testing.T) {
 }
 
 func TestProposalHandlerFailed(t *testing.T) {
-	app := simapp.Setup(false)
+	app := strideapp.InitStrideTestApp(false)
 	ctx := app.BaseApp.NewContext(false, tmproto.Header{})
 
 	recipient := delAddr1
